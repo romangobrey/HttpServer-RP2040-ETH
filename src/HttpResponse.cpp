@@ -1,6 +1,6 @@
 #include "HttpResponse.h"
 
-String HttpResponse::toString()
+String Rp2040::HttpResponse::toString()
 {
     const char *endLine = "\r\n";
     String reply = "HTTP/1.1 ";

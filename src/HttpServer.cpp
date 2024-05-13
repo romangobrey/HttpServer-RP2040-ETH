@@ -1,14 +1,6 @@
 #include "HttpServer.h"
 
-HttpServer::HttpServer()
-{
-}
-
-HttpServer::~HttpServer()
-{
-}
-
-void HttpServer::init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetMask[4], UWORD port, UDOUBLE baudRate)
+void Rp2040::HttpServer::init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetMask[4], UWORD port, UDOUBLE baudRate)
 {
     CH9120_SetMode(TcpServerMode);
     CH9120_SetLocalIp(serverIp);
@@ -22,7 +14,7 @@ void HttpServer::init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetMask[4], 
     isInitialized = true;
 }
 
-String HttpServer::getRequest()
+String Rp2040::HttpServer::getRequest()
 {
     if (UART_ID1.available())
     {
@@ -31,14 +23,14 @@ String HttpServer::getRequest()
     return String();
 }
 
-void HttpServer::sendResponse(HttpResponse response)
+void Rp2040::HttpServer::sendResponse(HttpResponse response)
 {
     UART_ID1.print(response.toString());
 }
 
-void HttpServer::handleRequest(HttpResponse (*callback)(String) = nullptr)
+void Rp2040::HttpServer::handleRequest(HttpResponse (*callback)(String) = nullptr)
 {
-    if (!isInitialized)
+    if (!Rp2040::HttpServer::isInitialized)
     {
         return; // throw exception?
     }

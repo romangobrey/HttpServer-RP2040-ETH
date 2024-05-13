@@ -1,12 +1,15 @@
 #include <arduino.h>
 #include <map>
 
-class HttpResponse
+namespace Rp2040
 {
-public:
-    unsigned short code;
-    String codeDescription;
-    std::map<String, String> headers;
-    String body;
-    String toString();
-};
+    class HttpResponse
+    {
+    public:
+        unsigned short code;
+        String codeDescription;
+        std::map<String, String> headers;
+        String body;
+        String toString();
+    };
+}

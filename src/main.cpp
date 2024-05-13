@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include "HttpServer.h"
 
+using namespace Rp2040;
+
 HttpResponse requestHandler(String input);
 
 HttpServer httpServer;
