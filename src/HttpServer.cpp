@@ -1,4 +1,10 @@
 #include "HttpServer.h"
+#include "HttpRequest.h"
+#include "HttpParser.h"
+
+using namespace Rp2040;
+
+HttpParser httpParser;
 
 void Rp2040::HttpServer::init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetMask[4], UWORD port, UDOUBLE baudRate)
 {
@@ -14,7 +20,7 @@ void Rp2040::HttpServer::init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetM
     isInitialized = true;
 }
 
-String Rp2040::HttpServer::getRequest()
+String Rp2040::HttpServer::getRawRequest()
 {
     if (UART_ID1.available())
     {
@@ -28,21 +34,22 @@ void Rp2040::HttpServer::sendResponse(HttpResponse response)
     UART_ID1.print(response.toString());
 }
 
-void Rp2040::HttpServer::handleRequest(HttpResponse (*callback)(String) = nullptr)
+void Rp2040::HttpServer::handleRequest(HttpResponse (*callback)(HttpRequest) = nullptr)
 {
     if (!Rp2040::HttpServer::isInitialized)
     {
         return; // throw exception?
     }
 
-    String request = getRequest();
-    if (request == NULL || request == "")
+    String rawRequest = getRawRequest();
+    if (rawRequest == NULL || rawRequest == "")
     {
         return;
     }
 
     if (callback != NULL)
     {
+        HttpRequest request = httpParser.GetHttpRequest(rawRequest);
         HttpResponse response = callback(request);
         sendResponse(response);
     }

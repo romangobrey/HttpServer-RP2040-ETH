@@ -57,8 +57,11 @@ enum ModeType
 void CH9120_Init();
 void CH9120_SetMode(ModeType mode);
 void CH9120_SetLocalIp(UCHAR value[4]);
+void CH9120_SetLocalPort(UWORD value);
 void CH9120_SetGateway(UCHAR value[4]);
 void CH9120_SetSubnetMask(UCHAR value[4]);
-void CH9120_SetLocalPort(UWORD value);
+void CH9120_SetTargetIp(UCHAR value[4]);
+void CH9120_SetTargetPort(UWORD value);
 void CH9120_SetBaudRate(UDOUBLE value);
+
 #endif

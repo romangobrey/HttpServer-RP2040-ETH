@@ -1,3 +1,5 @@
+#pragma once
+
 #include <arduino.h>
 #include <map>
 

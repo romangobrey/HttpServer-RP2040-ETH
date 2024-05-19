@@ -1,4 +1,5 @@
 #include "CH9120.h"
+#include "HttpRequest.h"
 #include "HttpResponse.h"
 
 namespace Rp2040
@@ -8,11 +9,11 @@ namespace Rp2040
     private:
         bool isInitialized;
 
-        String getRequest();
+        String getRawRequest();
         void sendResponse(HttpResponse response);
 
     public:
         void init(UCHAR serverIp[4], UCHAR gateway[4], UCHAR subnetMask[4], UWORD port = 80, UDOUBLE baudRate = 115200);
-        void handleRequest(HttpResponse (*callback)(String));
+        void handleRequest(HttpResponse (*callback)(HttpRequest));
     };
 }
