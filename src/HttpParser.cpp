@@ -157,7 +157,7 @@ std::map<String, String> Rp2040::HttpParser::GetHeaders(String content)
         String headerRow = headersStr.substring(0, headerDelimiterIdx);
         int semicolonIdx = headerRow.indexOf(':');
         String name = headerRow.substring(0, semicolonIdx);
-        String value = headerRow.substring(semicolonIdx + 1);
+        String value = headerRow.substring(semicolonIdx + 2);
         headers[name] = value;
 
         headersStr = headersStr.substring(headerDelimiterIdx + rowDelimiter.length());
