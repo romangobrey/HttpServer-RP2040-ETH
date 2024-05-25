@@ -13,7 +13,6 @@ Rp2040::HttpRequest Rp2040::HttpParser::GetHttpRequest(String rawRequest)
     request.protocolVersion = protocol.second;
     request.headers = GetHeaders(rawRequest);
     request.body = GetContent(rawRequest);
-
     return request;
 }
 

@@ -1,0 +1,27 @@
+{
+  "name": "HttpServer",
+  "version": "1.0.4",
+  "description": "HTTP server for Waveshare RP2040-ETH",
+  "keywords": "http, server, RP2040, CH9120",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/romangobrey/HttpServer-RP2040-ETH.git"
+  },
+  "authors": [
+    {
+      "name": "Serhii Ivantishen"
+    },
+    {
+      "name": "jercy"
+    },
+    {
+      "name": "Roman Gobrei",
+      "maintainer": true
+    }
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/romangobrey/HttpServer-RP2040-ETH",
+  "dependencies": {},
+  "frameworks": "arduino",
+  "platforms": "raspberrypi"
+}
