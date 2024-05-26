@@ -31,7 +31,6 @@ void loop()
 HttpResponse handleGetRequest(HttpRequest request)
 {
     HttpResponse response;
-    response.headers = std::map<String, String>();
     response.headers["Connection"] = "close";
     response.headers["Content-Type"] = "text/plain";
 
@@ -66,7 +65,6 @@ HttpResponse handleGetRequest(HttpRequest request)
 HttpResponse handleHeadRequest(HttpRequest request)
 {
     HttpResponse response;
-    response.headers = std::map<String, String>();
     response.headers["Connection"] = "close";
     response.code = 200;
     response.codeDescription = "OK";
@@ -76,7 +74,6 @@ HttpResponse handleHeadRequest(HttpRequest request)
 HttpResponse handleOtherRequest(HttpRequest request)
 {
     HttpResponse response;
-    response.headers = std::map<String, String>();
     response.headers["Connection"] = "close";
     response.headers["Content-Type"] = "text/plain";
 
@@ -87,7 +84,6 @@ HttpResponse handleOtherRequest(HttpRequest request)
     response.body += "\r\n";
     response.body += "Got " + request.methodName + " method";
 
-    response.headers = std::map<String, String>();
     response.headers["Content-Length"] = response.body.length();
     return response;
 }
