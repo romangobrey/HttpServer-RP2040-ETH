@@ -1,12 +1,12 @@
-// // This file is needed so library can be build
-// // #include Arduino - needed also, have no idea why
+// This file is needed so library can be build
+// #include Arduino - needed also, have no idea why
 
-// #include <Arduino.h>
+#include <Arduino.h>
 
-// void setup()
-// {
-// }
+void setup()
+{
+}
 
-// void loop()
-// {
-// }
+void loop()
+{
+}
