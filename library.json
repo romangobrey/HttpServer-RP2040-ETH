@@ -1,6 +1,6 @@
 {
   "name": "HttpServer",
-  "version": "1.0.4",
+  "version": "1.0.6",
   "description": "HTTP server for Waveshare RP2040-ETH",
   "keywords": "http, server, RP2040, CH9120",
   "repository": {
@@ -23,5 +23,21 @@
   "homepage": "https://github.com/romangobrey/HttpServer-RP2040-ETH",
   "dependencies": {},
   "frameworks": "arduino",
-  "platforms": "raspberrypi"
+  "platforms": "raspberrypi",
+  "examples": [
+    {
+      "name": "Authentication",
+      "base": "examples",
+      "files": [
+        "authentication.cpp"
+      ]
+    },
+    {
+      "name": "HttpServer",
+      "base": "examples",
+      "files": [
+        "httpServer.cpp"
+      ]
+    }
+  ]
 }
