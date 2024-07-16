@@ -1,14 +1,28 @@
 #include <Arduino.h>
-#include <HttpServer.h>
+#include "..\include\HttpServer.h"
 #include <HttpParser.h>
-#include <Custom.h>
 
 using namespace Rp2040;
-using namespace MyCustomHandlers;
+
+class CustomHandler : public IHttpHandler
+{
+public:
+    HttpResponse handle(const HttpRequest &request) override
+    {
+        HttpResponse response;
+        response.headers["Connection"] = "close";
+        response.headers["Content-Type"] = "text/plain";
+        response.code = 200;
+        response.codeDescription = "OK";
+        response.body = "Some data to return";
+        response.headers["Content-Length"] = response.body.length();
+
+        return response;
+    }
+};
 
 HttpServer httpServer;
 CustomHandler httpHandler;
-IHttpHandler *httpHandlerPointer = &httpHandler;
 
 void setup()
 {
@@ -27,5 +41,5 @@ void setup()
 
 void loop()
 {
-    httpServer.handleRequest(httpHandlerPointer);
+    httpServer.handleRequest(&httpHandler);
 }

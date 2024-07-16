@@ -34,26 +34,26 @@ void HttpServer::sendResponse(HttpResponse response)
     UART_ID1.print(response.toString());
 }
 
-// void Rp2040::HttpServer::handleRequest(HttpResponse (*callback)(HttpRequest) = nullptr)
-// {
-//     if (!Rp2040::HttpServer::isInitialized)
-//     {
-//         return; // throw exception?
-//     }
+void HttpServer::handleRequest(HttpResponse (*callback)(HttpRequest) = nullptr)
+{
+    if (!Rp2040::HttpServer::isInitialized)
+    {
+        return; // throw exception?
+    }
 
-//     String rawRequest = getRawRequest();
-//     if (rawRequest == NULL || rawRequest == "")
-//     {
-//         return;
-//     }
+    String rawRequest = getRawRequest();
+    if (rawRequest == NULL || rawRequest == "")
+    {
+        return;
+    }
 
-//     if (callback != NULL)
-//     {
-//         HttpRequest request = httpParser.GetHttpRequest(rawRequest);
-//         HttpResponse response = callback(request);
-//         sendResponse(response);
-//     }
-// }
+    if (callback != NULL)
+    {
+        HttpRequest request = httpParser.GetHttpRequest(rawRequest);
+        HttpResponse response = callback(request);
+        sendResponse(response);
+    }
+}
 
 void HttpServer::handleRequest(IHttpHandler *handler)
 {
@@ -64,7 +64,6 @@ void HttpServer::handleRequest(IHttpHandler *handler)
     }
 
     HttpRequest request = httpParser.GetHttpRequest(rawRequest);
-    handler->handle(request);
-    //HttpResponse response = handler->handle(request);
-    //sendResponse(response);
+    HttpResponse response = handler->handle(request);
+    sendResponse(response);
 }
